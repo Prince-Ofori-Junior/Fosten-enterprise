@@ -144,14 +144,14 @@ a {
 
 .card-image {
   width: 100%;
-  aspect-ratio: 4 / 3;   /* Keeps consistent ratio, responsive */
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* Crops image to fill area neatly */
+  object-fit: cover;
   display: block;
 }
 
@@ -159,7 +159,6 @@ a {
   padding: 1rem;
   text-align: center;
 }
-
 
 .price {
   color: var(--primary);
@@ -200,9 +199,14 @@ a {
   border-radius: 10px;
 }
 
+.about-snippet .text {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Footer */
 footer {
-  background:#ffc402ac;
+  background: #ffc402ac;
   color: #000000;
   padding: 3rem 1rem 1rem;
 }
@@ -223,14 +227,20 @@ footer a { color: #000000; }
 footer a:hover { color: var(--primary); }
 
 /* Responsive */
+@media (max-width: 992px) {
+  .nav-links {
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hamburger { display: block; }
 
   .nav-links {
     display: none;
     flex-direction: column;
-    align-items: center;     
-    text-align: center;      
+    align-items: center;
+    text-align: center;
     background: var(--dark);
     position: absolute;
     top: 100%;
@@ -249,26 +259,28 @@ footer a:hover { color: var(--primary); }
 
   .dropdown-menu li a {
     color: #000000;
-    text-align: center; 
+    text-align: center;
   }
 
   .footer-content {
     text-align: center;
     justify-items: center;
   }
-}
 
-/* Shrink nav tab gaps on medium screens */
-@media (max-width: 992px) {
+  /* About section: stack and match text to image */
+  .about-snippet {
+    grid-template-columns: 1fr;
+  }
+
+  .about-snippet img {
+    height: auto;
+  }
+
+  .about-snippet .text {
+    justify-content: center;
+  }
+
   .nav-links {
-    gap: 1rem;   /* less space on tablets/smaller laptops */
+    gap: 0.5rem;
   }
 }
-
-@media (max-width: 768px) {
-  /* You already have this breakpoint turning it into a vertical menu */
-  .nav-links {
-    gap: 0.5rem; /* optional: even tighter when stacked vertically */
-  }
-}
-
