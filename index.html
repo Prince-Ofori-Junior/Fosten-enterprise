@@ -18,7 +18,7 @@
         <li class="dropdown">
           <a href="#">Products ▾</a>
           <ul class="dropdown-menu">
-            <li><a href="#">Furniture</a></li>
+            <li><a href="furniture.html">Furniture</a></li>
             <li><a href="#">Tom Brown</a></li>
             <li><a href="#">Groundnut Paste</a></li>
           </ul>
@@ -30,6 +30,8 @@
       <button class="hamburger">&#9776;</button>
     </div>
   </nav>
+  <div class="mobile-overlay"></div>
+
 
   <!-- Hero Section -->
   <section class="section">
@@ -42,47 +44,64 @@
     </div>
   </section>
 
-  <!-- Products Grid -->
-  <section class="section bg-light">
-    <div class="container">
-      <h2 class="section-title">Our Products</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="card-image">
-            <img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="Product">
-          </div>
-          <div class="card-body">
-            <h3>Wooden Chair</h3>
-            <p class="price">GHS 250</p>
-            <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Wooden%20Chair" class="btn btn-primary">Order Now</a>
-          </div>
-        </div>
+ <!-- Products Grid -->
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="section-title">Our Products</h2>
 
-        <div class="card">
-          <div class="card-image">
-            <img src="WhatsApp Image 2025-09-16 at 15.06.05_c3cac1b8.jpg" alt="Product" size="500px" width="20px">
-          </div>
-          <div class="card-body">
-            <h3>Tom Brown</h3>
-            <p class="price">GHS 50</p>
-            <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Tom%20Brown" class="btn btn-primary">Order Now</a>
-          </div>
-        </div>
+    <!-- Search Bar -->
+    <div class="search-container" style="text-align:center; margin-bottom:2rem;">
+      <input type="text" id="productSearch" placeholder="Search for products..." style="padding:0.5rem 1rem; width:250px; border-radius:5px; border:1px solid #ccc;">
+    </div>
 
-        <div class="card">
-          <div class="card-image">
-            <img src="WhatsApp Image 2025-09-16 at 15.06.11_dd392df0.jpg" alt="Product">
-          </div>
-          <div class="card-body">
-            <h3>Groundnut Paste</h3>
-            <p class="price">GHS 30</p>
-            <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Groundnut%20Paste" class="btn btn-primary">Order Now</a>
-          </div>
+    <div class="grid" id="productsGrid">
+      <div class="card">
+        <div class="card-image">
+          <img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="Wooden Chair">
+        </div>
+        <div class="card-body">
+          <h3>Wooden Chair</h3>
+          <p class="price">GHS 250</p>
+          <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Wooden%20Chair" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="WhatsApp Image 2025-09-16 at 15.06.05_c3cac1b8.jpg" alt="Tom Brown">
+        </div>
+        <div class="card-body">
+          <h3>Tom Brown</h3>
+          <p class="price">GHS 50</p>
+          <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Tom%20Brown" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-image">
+          <img src="WhatsApp Image 2025-09-16 at 15.06.05_c3cac1b8.jpg" alt="Tom Brown">
+        </div>
+        <div class="card-body">
+          <h3>Tom Brown</h3>
+          <p class="price">GHS 50</p>
+          <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Tom%20Brown" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="WhatsApp Image 2025-09-16 at 15.06.11_dd392df0.jpg" alt="Groundnut Paste">
+        </div>
+        <div class="card-body">
+          <h3>Groundnut Paste</h3>
+          <p class="price">GHS 30</p>
+          <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Groundnut%20Paste" class="btn btn-primary">Order Now</a>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- About -->
   <section class="section">
     <div class="container about-snippet">
@@ -117,14 +136,72 @@
     </div>
     <p style="text-align:center; color:#030303d7;">&copy; 2025 Fosten Company. All rights reserved.</p>
   </footer>
+ <script>
+  const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const dropdowns = document.querySelectorAll('.nav-links .dropdown');
+const overlay = document.querySelector('.mobile-overlay');
 
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
+// Mobile menu toggle
+hamburger.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('show');
+  overlay.style.display = isOpen ? 'block' : 'none';
+});
+
+// Close menu when clicking overlay
+overlay.addEventListener('click', () => {
+  navLinks.classList.remove('show');
+  overlay.style.display = 'none';
+});
+
+// Dropdown click toggle for mobile
+dropdowns.forEach(dropdown => {
+  const link = dropdown.querySelector('a');
+  link.addEventListener('click', (e) => {
+    if(window.innerWidth <= 768) {
+      e.preventDefault();
+      dropdown.classList.toggle('show');
+    }
+  });
+});
+
+// Close dropdown if clicking outside
+document.addEventListener('click', (e) => {
+  if(window.innerWidth <= 768 && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+    navLinks.classList.remove('show');
+    overlay.style.display = 'none';
+    dropdowns.forEach(d => d.classList.remove('show'));
+  }
+});
+
+// Reset mobile menu on resize
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 768) {
+    navLinks.classList.remove('show');
+    overlay.style.display = 'none';
+    dropdowns.forEach(d => d.classList.remove('show'));
+  }
+});
+
+
+    // Reset mobile menu on resize
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 768) {
+        navLinks.classList.remove('show');
+        dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+      }
     });
-  </script>
 
+   const searchInput = document.getElementById('productSearch');
+  const cards = document.querySelectorAll('.card');
+
+  searchInput.addEventListener('input', () => {
+    const filter = searchInput.value.toLowerCase();
+    cards.forEach(card => {
+      const productName = card.querySelector('h3').textContent.toLowerCase();
+      card.style.display = productName.includes(filter) ? 'flex' : 'none'; // maintain flex layout
+    });
+  });
+</script>
 </body>
 </html>
