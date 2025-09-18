@@ -16,7 +16,9 @@ body {
   color: var(--text);
   line-height: 1.6;
   background: #fff;
+  padding-top: 80px;  /* adjust to your navbar height (~70–80px) */
 }
+
 
 a {
   text-decoration: none;
@@ -43,8 +45,13 @@ a {
 .navbar {
   background: var(--dark);
   color: #000000;
-  position: relative;
+  position: fixed;      /* <— make it stick */
+  top: 0;                /* <— pin to top */
+  left: 0;
+  width: 100%;           /* <— full width */
+  z-index: 1000;         /* <— stay above everything else */
 }
+
 
 .nav-header {
   display: flex;
@@ -293,20 +300,32 @@ footer a:hover { color: var(--primary); }
   }
 }
 
-/* Search Bar */
-.search-container {
-  text-align: center;
-  margin-bottom: 2rem;
+/* Navbar search */
+.nav-search {
+  margin-left: 2rem;
 }
 
-#productSearch {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.6rem 1rem;
+.nav-search input {
+  padding: 0.5rem 1rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  width: 500px;
 }
+
+@media (max-width: 768px) {
+  .nav-search {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0 0;
+  }
+
+  .nav-search input {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+
 /* Overlay behind mobile menu */
 .mobile-overlay {
   display: none;
@@ -327,3 +346,54 @@ footer a:hover { color: var(--primary); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Navbar layout */
+.nav-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* logo | search | nav-links */
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  justify-self: start;
+}
+
+/* Search bar */
+.nav-search {
+  justify-self: center;
+  width: 100%;
+  max-width: 500px; /* large on desktop */
+}
+
+.nav-search input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Nav links */
+.nav-links {
+  justify-self: end;
+}
+
+/* Mobile: keep inline, shrink search bar */
+@media (max-width: 768px) {
+  .nav-header {
+    grid-template-columns: auto auto auto; /* keep inline: logo | search | hamburger */
+  }
+
+  .nav-search {
+    max-width: 160px; /* small enough to fit */
+  }
+
+  .nav-search input {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .nav-links {
+    display: none; /* stays hidden until hamburger clicked */
+  }
+}

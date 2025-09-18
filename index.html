@@ -8,29 +8,33 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="nav-header">
-      <div class="logo">MyBrand</div>
+ <!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-header">
+    <div class="logo">MyBrand</div>
 
-      <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li class="dropdown">
-          <a href="#">Products ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="furniture.html">Furniture</a></li>
-            <li><a href="#">Tom Brown</a></li>
-            <li><a href="#">Groundnut Paste</a></li>
-          </ul>
-        </li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-
-      <button class="hamburger">&#9776;</button>
+    <!-- 🔍 Search Bar added here -->
+    <div class="nav-search">
+      <input type="text" id="productSearch" placeholder="Search products...">
     </div>
-  </nav>
-  <div class="mobile-overlay"></div>
+    
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Products ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="furniture.html">Furnitures</a></li>
+          <li><a href="foodBeverages.html">Food & Beverages</a></li>
+        </ul>
+      </li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <button class="hamburger">&#9776;</button>
+  </div>
+</nav>
+<div class="mobile-overlay"></div>
 
 
   <!-- Hero Section -->
@@ -48,11 +52,6 @@
 <section class="section bg-light">
   <div class="container">
     <h2 class="section-title">Our Products</h2>
-
-    <!-- Search Bar -->
-    <div class="search-container" style="text-align:center; margin-bottom:2rem;">
-      <input type="text" id="productSearch" placeholder="Search for products..." style="padding:0.5rem 1rem; width:250px; border-radius:5px; border:1px solid #ccc;">
-    </div>
 
     <div class="grid" id="productsGrid">
       <div class="card">
